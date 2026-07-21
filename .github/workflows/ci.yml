@@ -60,6 +60,10 @@ jobs:
             project: Level_08_LegacyPaymentGateway/Level_08.Tests.Reference/Level_08.Tests.Reference.csproj
           - level: Level_09
             project: Level_09_HomeTheaterStartup/Level_09.Tests.Reference/Level_09.Tests.Reference.csproj
+          - level: Level_10
+            project: Level_10_DeviceRemoteControl/Level_10.Tests.Reference/Level_10.Tests.Reference.csproj
+          - level: Level_11
+            project: Level_11_AccessControlCache/Level_11.Tests.Reference/Level_11.Tests.Reference.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -94,6 +98,10 @@ jobs:
             project: Level_08_LegacyPaymentGateway/Level_08.Tests/Level_08.Tests.csproj
           - level: Level_09
             project: Level_09_HomeTheaterStartup/Level_09.Tests/Level_09.Tests.csproj
+          - level: Level_10
+            project: Level_10_DeviceRemoteControl/Level_10.Tests/Level_10.Tests.csproj
+          - level: Level_11
+            project: Level_11_AccessControlCache/Level_11.Tests/Level_11.Tests.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
