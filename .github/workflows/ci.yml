@@ -48,6 +48,10 @@ jobs:
             project: Level_02_EnemySpawner/Level_02.Tests.Reference/Level_02.Tests.Reference.csproj
           - level: Level_03
             project: Level_03_DatabaseConnectionPool/Level_03.Tests.Reference/Level_03.Tests.Reference.csproj
+          - level: Level_04
+            project: Level_04_EnergyResourceGenerator/Level_04.Tests.Reference/Level_04.Tests.Reference.csproj
+          - level: Level_05
+            project: Level_05_CrossPlatformUI/Level_05.Tests.Reference/Level_05.Tests.Reference.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -70,6 +74,10 @@ jobs:
             project: Level_02_EnemySpawner/Level_02.Tests/Level_02.Tests.csproj
           - level: Level_03
             project: Level_03_DatabaseConnectionPool/Level_03.Tests/Level_03.Tests.csproj
+          - level: Level_04
+            project: Level_04_EnergyResourceGenerator/Level_04.Tests/Level_04.Tests.csproj
+          - level: Level_05
+            project: Level_05_CrossPlatformUI/Level_05.Tests/Level_05.Tests.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
