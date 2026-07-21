@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Level06.Organization</RootNamespace>
+    <AssemblyName>Level_06.Start</AssemblyName>
+  </PropertyGroup>
+
+</Project>
