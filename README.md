@@ -67,18 +67,21 @@ idéale passe bien l'épreuve.
 
 ---
 
-## 🤖 Intégration continue (GitLab CI/CD)
+## 🤖 Intégration continue (GitHub Actions)
 
-Le fichier [`.gitlab-ci.yml`](.gitlab-ci.yml) exécute, à chaque push, deux jobs
-par niveau :
+Le workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) exécute, à
+chaque push, deux jobs par niveau :
 
-- **`level-XX:reference`** — teste `.Solution`. **Doit être vert** (santé du dépôt).
-- **`level-XX:arbiter`** — teste `.Start`. **Rouge tant que le niveau n'est pas
+- **`reference (Level_XX)`** — teste `.Solution`. **Doit être vert** (santé du dépôt).
+- **`arbiter (Level_XX)`** — teste `.Start`. **Rouge tant que le niveau n'est pas
   résolu**, vert dès qu'il l'est.
 
-Sur un clone frais, le pipeline est donc partiellement rouge **par conception** :
+Sur un clone frais, le workflow est donc partiellement rouge **par conception** :
 chaque `arbiter` rouge est un niveau qu'il te reste à résoudre. Ton tableau de
 score, c'est la liste des jobs `arbiter` qui passent au vert. 🏆
+
+> Pour ajouter un niveau, il suffit d'ajouter une entrée dans les deux matrices
+> (`reference` et `arbiter`) du workflow.
 
 ---
 

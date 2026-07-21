@@ -1,0 +1,71 @@
+# =============================================================================
+#  Design Patterns Game — Intégration continue (GitHub Actions)
+# =============================================================================
+#  Deux jobs par niveau :
+#
+#   * reference (<niveau>)  -> exécute les tests contre le projet .Solution.
+#                              DOIT toujours être VERT : il prouve que la
+#                              référence du dépôt (l'arbitre + la solution
+#                              idéale) est saine.
+#
+#   * arbiter   (<niveau>)  -> exécute les tests contre le projet .Start
+#                              (le terrain de jeu). ROUGE tant que le niveau
+#                              n'est pas résolu, VERT = niveau gagné.
+#
+#  Sur un clone frais : tous les `reference` passent, tous les `arbiter`
+#  échouent. La mission du joueur est de faire passer son `arbiter` au vert.
+#
+#  Pour ajouter un niveau : ajoute une entrée dans CHAQUE matrice ci-dessous.
+# =============================================================================
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+  DOTNET_NOLOGO: "true"
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "true"
+
+jobs:
+  # ---- Garde-fous du dépôt : la référence doit toujours passer --------------
+  reference:
+    name: reference (${{ matrix.level }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - level: Level_01
+            project: Level_01_ComplexFactoryBlueprint/Level_01.Tests.Reference/Level_01.Tests.Reference.csproj
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Test (référence)
+        run: dotnet test "${{ matrix.project }}" --configuration Release --logger "console;verbosity=normal"
+
+  # ---- Arbitre : le tableau de score du joueur (rouge tant que non résolu) ---
+  arbiter:
+    name: arbiter (${{ matrix.level }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - level: Level_01
+            project: Level_01_ComplexFactoryBlueprint/Level_01.Tests/Level_01.Tests.csproj
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Test (arbitre — VERT = niveau gagné)
+        run: dotnet test "${{ matrix.project }}" --configuration Release --logger "console;verbosity=normal"
