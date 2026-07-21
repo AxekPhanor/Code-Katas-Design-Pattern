@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <RootNamespace>Level01.AssemblyPlant.Tests</RootNamespace>
+    <AssemblyName>Level_01.Tests.Reference</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--
+      On réutilise EXACTEMENT les mêmes fichiers de test que l'arbitre, mais on
+      les compile contre le projet .Solution. C'est la preuve, à chaque push,
+      que la solution de référence passe bien l'épreuve de l'arbitre.
+    -->
+    <Compile Include="../Level_01.Tests/**/*.cs"
+             Exclude="../Level_01.Tests/obj/**/*.cs;../Level_01.Tests/bin/**/*.cs"
+             Link="Arbiter/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Level_01.Solution/Level_01.Solution.csproj" />
+  </ItemGroup>
+
+</Project>

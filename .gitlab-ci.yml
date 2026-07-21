@@ -1,0 +1,58 @@
+# =============================================================================
+#  Design Patterns Game — Pipeline d'intégration continue
+# =============================================================================
+#  Deux types de jobs par niveau :
+#
+#   * <niveau>:reference  -> exécute les tests contre le projet .Solution.
+#                            DOIT toujours être VERT : il prouve que la
+#                            référence du dépôt (l'arbitre + la solution
+#                            idéale) est saine.
+#
+#   * <niveau>:arbiter    -> exécute les tests contre le projet .Start
+#                            (le terrain de jeu). ROUGE tant que le niveau
+#                            n'est pas résolu, VERT = niveau gagné.
+#
+#  Sur un clone frais : tous les `reference` passent, tous les `arbiter`
+#  échouent. La mission du joueur est de faire passer son `arbiter` au vert.
+# =============================================================================
+
+stages:
+  - reference
+  - arbiter
+
+default:
+  image: mcr.microsoft.com/dotnet/sdk:10.0
+  cache:
+    key: "nuget-$CI_COMMIT_REF_SLUG"
+    paths:
+      - .nuget/packages/
+
+variables:
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+  DOTNET_NOLOGO: "true"
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "true"
+  NUGET_PACKAGES: "$CI_PROJECT_DIR/.nuget/packages"
+
+# ---- Templates réutilisables (dupliqués à chaque niveau) --------------------
+.reference_job:
+  stage: reference
+  script:
+    - dotnet test "$TEST_PROJECT" --configuration Release --logger "console;verbosity=normal"
+
+.arbiter_job:
+  stage: arbiter
+  script:
+    - dotnet test "$TEST_PROJECT" --configuration Release --logger "console;verbosity=normal"
+
+# =============================================================================
+#  Level 01 — ComplexFactoryBlueprint
+# =============================================================================
+level-01:reference:
+  extends: .reference_job
+  variables:
+    TEST_PROJECT: "Level_01_ComplexFactoryBlueprint/Level_01.Tests.Reference/Level_01.Tests.Reference.csproj"
+
+level-01:arbiter:
+  extends: .arbiter_job
+  variables:
+    TEST_PROJECT: "Level_01_ComplexFactoryBlueprint/Level_01.Tests/Level_01.Tests.csproj"
