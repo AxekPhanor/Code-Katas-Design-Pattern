@@ -44,6 +44,10 @@ jobs:
         include:
           - level: Level_01
             project: Level_01_ComplexFactoryBlueprint/Level_01.Tests.Reference/Level_01.Tests.Reference.csproj
+          - level: Level_02
+            project: Level_02_EnemySpawner/Level_02.Tests.Reference/Level_02.Tests.Reference.csproj
+          - level: Level_03
+            project: Level_03_DatabaseConnectionPool/Level_03.Tests.Reference/Level_03.Tests.Reference.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -62,6 +66,10 @@ jobs:
         include:
           - level: Level_01
             project: Level_01_ComplexFactoryBlueprint/Level_01.Tests/Level_01.Tests.csproj
+          - level: Level_02
+            project: Level_02_EnemySpawner/Level_02.Tests/Level_02.Tests.csproj
+          - level: Level_03
+            project: Level_03_DatabaseConnectionPool/Level_03.Tests/Level_03.Tests.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
