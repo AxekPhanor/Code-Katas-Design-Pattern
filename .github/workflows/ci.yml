@@ -66,6 +66,8 @@ jobs:
             project: Level_11_AccessControlCache/Level_11.Tests.Reference/Level_11.Tests.Reference.csproj
           - level: Level_12
             project: Level_12_SupportTicketRouting/Level_12.Tests.Reference/Level_12.Tests.Reference.csproj
+          - level: Level_13
+            project: Level_13_UndoRedoSystem/Level_13.Tests.Reference/Level_13.Tests.Reference.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -106,6 +108,8 @@ jobs:
             project: Level_11_AccessControlCache/Level_11.Tests/Level_11.Tests.csproj
           - level: Level_12
             project: Level_12_SupportTicketRouting/Level_12.Tests/Level_12.Tests.csproj
+          - level: Level_13
+            project: Level_13_UndoRedoSystem/Level_13.Tests/Level_13.Tests.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
