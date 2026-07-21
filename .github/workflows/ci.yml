@@ -64,6 +64,8 @@ jobs:
             project: Level_10_DeviceRemoteControl/Level_10.Tests.Reference/Level_10.Tests.Reference.csproj
           - level: Level_11
             project: Level_11_AccessControlCache/Level_11.Tests.Reference/Level_11.Tests.Reference.csproj
+          - level: Level_12
+            project: Level_12_SupportTicketRouting/Level_12.Tests.Reference/Level_12.Tests.Reference.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -102,6 +104,8 @@ jobs:
             project: Level_10_DeviceRemoteControl/Level_10.Tests/Level_10.Tests.csproj
           - level: Level_11
             project: Level_11_AccessControlCache/Level_11.Tests/Level_11.Tests.csproj
+          - level: Level_12
+            project: Level_12_SupportTicketRouting/Level_12.Tests/Level_12.Tests.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
