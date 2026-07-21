@@ -68,6 +68,8 @@ jobs:
             project: Level_12_SupportTicketRouting/Level_12.Tests.Reference/Level_12.Tests.Reference.csproj
           - level: Level_13
             project: Level_13_UndoRedoSystem/Level_13.Tests.Reference/Level_13.Tests.Reference.csproj
+          - level: Level_14
+            project: Level_14_ConcertTourAlerts/Level_14.Tests.Reference/Level_14.Tests.Reference.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -110,6 +112,8 @@ jobs:
             project: Level_12_SupportTicketRouting/Level_12.Tests/Level_12.Tests.csproj
           - level: Level_13
             project: Level_13_UndoRedoSystem/Level_13.Tests/Level_13.Tests.csproj
+          - level: Level_14
+            project: Level_14_ConcertTourAlerts/Level_14.Tests/Level_14.Tests.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
