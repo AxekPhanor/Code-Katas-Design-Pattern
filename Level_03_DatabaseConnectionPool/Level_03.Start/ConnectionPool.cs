@@ -18,7 +18,9 @@ public sealed class ConnectionPool
 {
     private static int _constructionCount;
 
-    public ConnectionPool()
+    public static ConnectionPool Instance { get; } = new ConnectionPool();
+
+    private ConnectionPool()
     {
         Interlocked.Increment(ref _constructionCount);
     }
@@ -29,6 +31,6 @@ public sealed class ConnectionPool
     public static ConnectionPool GetInstance()
     {
         // Bug : une nouvelle instance à chaque appel.
-        return new ConnectionPool();
+        return Instance;
     }
 }
