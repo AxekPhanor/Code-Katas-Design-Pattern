@@ -80,6 +80,10 @@ jobs:
             project: Level_18_DataMiningWorkflow/Level_18.Tests.Reference/Level_18.Tests.Reference.csproj
           - level: Level_19
             project: Level_19_TaxCalculationExport/Level_19.Tests.Reference/Level_19.Tests.Reference.csproj
+          - level: Level_20
+            project: Level_20_AppSettingManagement/Level_20.Tests.Reference/Level_20.Tests.Reference.csproj
+          - level: Level_21
+            project: Level_21_DependencyInjectionCleanup/Level_21.Tests.Reference/Level_21.Tests.Reference.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -134,6 +138,10 @@ jobs:
             project: Level_18_DataMiningWorkflow/Level_18.Tests/Level_18.Tests.csproj
           - level: Level_19
             project: Level_19_TaxCalculationExport/Level_19.Tests/Level_19.Tests.csproj
+          - level: Level_20
+            project: Level_20_AppSettingManagement/Level_20.Tests/Level_20.Tests.csproj
+          - level: Level_21
+            project: Level_21_DependencyInjectionCleanup/Level_21.Tests/Level_21.Tests.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
