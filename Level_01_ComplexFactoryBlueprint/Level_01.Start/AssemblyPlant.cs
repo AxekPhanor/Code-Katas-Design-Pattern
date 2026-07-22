@@ -24,19 +24,20 @@ public static class AssemblyPlant
                 "At least one conveyor is required.", nameof(specification));
         }
 
-        if (conveyors.Count > 3)
+        var builder = new AssemblyFactoryBuilder();
+
+        foreach (var conveyor in conveyors)
         {
-            throw new NotSupportedException(
-                "This assembly line is hard-wired for a maximum of 3 conveyors.");
+            builder.AddConveyor(conveyor.Name, conveyor.UnitsPerMinute);
         }
 
-        return new AssemblyFactory(
-            specification.Name,
-            conveyors[0].Name, conveyors[0].UnitsPerMinute,
-            conveyors.Count > 1 ? conveyors[1].Name : null, conveyors.Count > 1 ? conveyors[1].UnitsPerMinute : 0,
-            conveyors.Count > 2 ? conveyors[2].Name : null, conveyors.Count > 2 ? conveyors[2].UnitsPerMinute : 0,
-            specification.RoboticArms,
-            specification.HasQualityControl,
-            packagingUnit: false);
+        if (specification.HasQualityControl)
+        {
+            builder.AddQualityControl();
+        }
+
+        return builder
+            .AddRoboticArms(specification.RoboticArms)
+            .Build(specification.Name);
     }
 }

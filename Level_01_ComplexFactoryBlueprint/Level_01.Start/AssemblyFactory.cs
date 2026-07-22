@@ -20,39 +20,12 @@ public sealed class AssemblyFactory : IAssemblyFactory
 {
     private readonly List<Conveyor> _conveyors = new();
 
-    public AssemblyFactory(
-        string name,
-        string conveyor1Name, int conveyor1Speed,
-        string? conveyor2Name, int conveyor2Speed,
-        string? conveyor3Name, int conveyor3Speed,
-        int roboticArms,
-        bool qualityControl,
-        bool packagingUnit)
+    public AssemblyFactory(string name, AssemblyFactoryBuilder builder)
     {
         Name = name;
-
-        if (!string.IsNullOrWhiteSpace(conveyor1Name))
-        {
-            _conveyors.Add(new Conveyor(conveyor1Name, conveyor1Speed));
-        }
-
-        if (!string.IsNullOrWhiteSpace(conveyor2Name))
-        {
-            _conveyors.Add(new Conveyor(conveyor2Name, conveyor2Speed));
-        }
-
-        if (!string.IsNullOrWhiteSpace(conveyor3Name))
-        {
-            _conveyors.Add(new Conveyor(conveyor3Name, conveyor3Speed));
-        }
-
-        RoboticArms = roboticArms;
-        HasQualityControl = qualityControl;
-
-        // `packagingUnit` : drapeau positionnel hérité, aujourd'hui sans effet.
-        // Exactement le genre de paramètre fantôme qui rend ce constructeur
-        // illisible et dangereux à l'appel.
-        _ = packagingUnit;
+        _conveyors = builder.conveyors.ToList();
+        RoboticArms = builder.roboticArms;
+        HasQualityControl = builder.qualityControl;
     }
 
     public string Name { get; }
