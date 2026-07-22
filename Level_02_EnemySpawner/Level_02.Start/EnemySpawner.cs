@@ -14,7 +14,7 @@ namespace Level02.Bestiary;
 // -----------------------------------------------------------------------------
 public sealed class EnemySpawner
 {
-    private readonly Enemy _prototype;
+    private readonly IEnemy _prototype;
 
     public EnemySpawner(Enemy prototype)
     {
@@ -23,11 +23,6 @@ public sealed class EnemySpawner
 
     public IEnemy Spawn()
     {
-        // Reconstruction manuelle : couplage fort au constructeur d'Enemy.
-        return new Enemy(
-            _prototype.Name,
-            _prototype.Health,
-            _prototype.Damage,
-            _prototype.Abilities);
+        return _prototype.Clone();
     }
 }
