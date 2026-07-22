@@ -6,7 +6,7 @@ public sealed class AssemblyFactoryBuilder : IAssemblyFactoryBuilder
     internal int roboticArms = 0;
     internal bool qualityControl = false;
     internal bool packagingUnit = false;
-    private AssemblyFactory _assemblyFactory;
+    private AssemblyFactory? _assemblyFactory;
 
     public AssemblyFactoryBuilder AddConveyor(string name, int speed)
     {        
