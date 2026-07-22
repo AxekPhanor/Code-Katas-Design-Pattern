@@ -74,6 +74,12 @@ jobs:
             project: Level_15_LogisticsRouting/Level_15.Tests.Reference/Level_15.Tests.Reference.csproj
           - level: Level_16
             project: Level_16_CharacterCombatPhases/Level_16.Tests.Reference/Level_16.Tests.Reference.csproj
+          - level: Level_17
+            project: Level_17_CampfireSaveState/Level_17.Tests.Reference/Level_17.Tests.Reference.csproj
+          - level: Level_18
+            project: Level_18_DataMiningWorkflow/Level_18.Tests.Reference/Level_18.Tests.Reference.csproj
+          - level: Level_19
+            project: Level_19_TaxCalculationExport/Level_19.Tests.Reference/Level_19.Tests.Reference.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -122,6 +128,12 @@ jobs:
             project: Level_15_LogisticsRouting/Level_15.Tests/Level_15.Tests.csproj
           - level: Level_16
             project: Level_16_CharacterCombatPhases/Level_16.Tests/Level_16.Tests.csproj
+          - level: Level_17
+            project: Level_17_CampfireSaveState/Level_17.Tests/Level_17.Tests.csproj
+          - level: Level_18
+            project: Level_18_DataMiningWorkflow/Level_18.Tests/Level_18.Tests.csproj
+          - level: Level_19
+            project: Level_19_TaxCalculationExport/Level_19.Tests/Level_19.Tests.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
