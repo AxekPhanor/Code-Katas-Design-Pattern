@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Level16.Combat</RootNamespace>
+    <AssemblyName>Level_16.Start</AssemblyName>
+  </PropertyGroup>
+
+</Project>

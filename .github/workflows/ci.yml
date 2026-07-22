@@ -72,6 +72,8 @@ jobs:
             project: Level_14_ConcertTourAlerts/Level_14.Tests.Reference/Level_14.Tests.Reference.csproj
           - level: Level_15
             project: Level_15_LogisticsRouting/Level_15.Tests.Reference/Level_15.Tests.Reference.csproj
+          - level: Level_16
+            project: Level_16_CharacterCombatPhases/Level_16.Tests.Reference/Level_16.Tests.Reference.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -118,6 +120,8 @@ jobs:
             project: Level_14_ConcertTourAlerts/Level_14.Tests/Level_14.Tests.csproj
           - level: Level_15
             project: Level_15_LogisticsRouting/Level_15.Tests/Level_15.Tests.csproj
+          - level: Level_16
+            project: Level_16_CharacterCombatPhases/Level_16.Tests/Level_16.Tests.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
