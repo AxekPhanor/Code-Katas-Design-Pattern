@@ -84,6 +84,8 @@ jobs:
             project: Level_20_AppSettingManagement/Level_20.Tests.Reference/Level_20.Tests.Reference.csproj
           - level: Level_21
             project: Level_21_DependencyInjectionCleanup/Level_21.Tests.Reference/Level_21.Tests.Reference.csproj
+          - level: Level_22
+            project: Level_22_HighTrafficOrders/Level_22.Tests.Reference/Level_22.Tests.Reference.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -142,6 +144,8 @@ jobs:
             project: Level_20_AppSettingManagement/Level_20.Tests/Level_20.Tests.csproj
           - level: Level_21
             project: Level_21_DependencyInjectionCleanup/Level_21.Tests/Level_21.Tests.csproj
+          - level: Level_22
+            project: Level_22_HighTrafficOrders/Level_22.Tests/Level_22.Tests.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
