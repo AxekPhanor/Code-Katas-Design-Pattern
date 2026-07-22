@@ -144,7 +144,9 @@ score, c'est la liste des jobs `arbiter` qui passent au vert. 🏆
 
 ## 📌 État d'avancement du dépôt
 
-- ✅ **Level 01** — implémenté (gabarit de référence).
-- ⏳ Levels 02 → 26 — à venir, sur le même moule.
+- ✅ **Levels 01 → 26** — tous implémentés (Start / Solution / Tests / Tests.Reference).
+- Chaque niveau est validé par la CI : le job `reference` est vert (la solution de
+  référence passe l'arbitre), le job `arbiter` est rouge tant que tu n'as pas résolu
+  le `.Start`.
 
 Bon refactoring ! 🛠️

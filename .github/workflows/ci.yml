@@ -86,6 +86,14 @@ jobs:
             project: Level_21_DependencyInjectionCleanup/Level_21.Tests.Reference/Level_21.Tests.Reference.csproj
           - level: Level_22
             project: Level_22_HighTrafficOrders/Level_22.Tests.Reference/Level_22.Tests.Reference.csproj
+          - level: Level_23
+            project: Level_23_EndpointRefactoring/Level_23.Tests.Reference/Level_23.Tests.Reference.csproj
+          - level: Level_24
+            project: Level_24_ECommerceCheckoutFlow/Level_24.Tests.Reference/Level_24.Tests.Reference.csproj
+          - level: Level_25
+            project: Level_25_ReliableMessagePublishing/Level_25.Tests.Reference/Level_25.Tests.Reference.csproj
+          - level: Level_26
+            project: Level_26_ExternalApiResilience/Level_26.Tests.Reference/Level_26.Tests.Reference.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -146,6 +154,14 @@ jobs:
             project: Level_21_DependencyInjectionCleanup/Level_21.Tests/Level_21.Tests.csproj
           - level: Level_22
             project: Level_22_HighTrafficOrders/Level_22.Tests/Level_22.Tests.csproj
+          - level: Level_23
+            project: Level_23_EndpointRefactoring/Level_23.Tests/Level_23.Tests.csproj
+          - level: Level_24
+            project: Level_24_ECommerceCheckoutFlow/Level_24.Tests/Level_24.Tests.csproj
+          - level: Level_25
+            project: Level_25_ReliableMessagePublishing/Level_25.Tests/Level_25.Tests.csproj
+          - level: Level_26
+            project: Level_26_ExternalApiResilience/Level_26.Tests/Level_26.Tests.csproj
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
