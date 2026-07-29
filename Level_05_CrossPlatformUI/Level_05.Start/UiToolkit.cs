@@ -13,22 +13,19 @@ namespace Level05.Ui;
 // -----------------------------------------------------------------------------
 public sealed class UiToolkit
 {
+    private readonly Dictionary<string, IComponentsFactory> _factories = new()
+    {
+            ["windows"] = new WindowsFactory(),
+            ["mac"] = new MacFactory()
+    };
+    
     public UiComponents CreateComponents(string platform)
     {
-        IButton button = platform switch
+        if (!_factories.TryGetValue(platform, out var factory))
         {
-            "windows" => new WindowsButton(),
-            "mac" => new MacButton(),
-            _ => throw new ArgumentException($"Unknown platform: {platform}", nameof(platform)),
-        };
-
-        ICheckbox checkbox = platform switch
-        {
-            "windows" => new WindowsCheckbox(),
-            "mac" => new MacCheckbox(),
-            _ => throw new ArgumentException($"Unknown platform: {platform}", nameof(platform)),
-        };
-
-        return new UiComponents(button, checkbox);
+            throw new ArgumentException($"Unknown platform: {platform}", nameof(platform));
+        }
+        
+        return new UiComponents(factory.CreateButton(), factory.CreateCheckbox());
     }
 }
