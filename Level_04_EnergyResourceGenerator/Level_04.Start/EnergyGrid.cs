@@ -13,18 +13,20 @@ namespace Level04.EnergyGrid;
 // -----------------------------------------------------------------------------
 public sealed class EnergyGrid
 {
+    private readonly Dictionary<string, EnergyResourceFactory> _factories = new()
+    {
+        ["solar"] = new SolarResourceFactory(),
+        ["wind"] = new WindResourceFactory(),
+        ["nuclear"] = new NuclearResourceFactory(),
+    };
+
     public IEnergyResource Create(string kind)
     {
-        switch (kind)
+        if (!_factories.TryGetValue(kind, out var factory))
         {
-            case "solar":
-                return new SolarResource();
-            case "wind":
-                return new WindResource();
-            case "nuclear":
-                return new NuclearResource();
-            default:
-                throw new ArgumentException($"Unknown resource kind: {kind}", nameof(kind));
+            throw new ArgumentException($"Unknown resource kind: {kind}", nameof(kind));
         }
+
+        return factory.Create();
     }
 }
