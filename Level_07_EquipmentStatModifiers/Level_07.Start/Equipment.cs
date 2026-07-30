@@ -30,26 +30,43 @@ public sealed class Weapon : IEquipment
     }
 
     public string Name { get; }
-    public bool Sharpened { get; set; }
-    public bool Enchanted { get; set; }
 
-    public int AttackPower() =>
-        _baseAttack + (Sharpened ? 10 : 0) + (Enchanted ? 15 : 0);
+    public int AttackPower() => _baseAttack ;
 }
 
 public static class Gear
 {
     public static IEquipment Basic(string name, int baseAttack) => new Weapon(name, baseAttack);
 
-    public static IEquipment Sharpen(IEquipment equipment)
+    public static IEquipment Sharpen(IEquipment equipment) => new Sharpen(equipment);
+
+    public static IEquipment Enchant(IEquipment equipment) => new Enchant(equipment);
+}
+
+public class Sharpen : IEquipment
+{
+    private readonly IEquipment _inner;
+
+    public Sharpen(IEquipment inner)
     {
-        ((Weapon)equipment).Sharpened = true;
-        return equipment;
+        _inner = inner;
     }
 
-    public static IEquipment Enchant(IEquipment equipment)
+    public string Name => _inner.Name;
+
+    public int AttackPower() => _inner.AttackPower() + 10;
+}
+
+public class Enchant : IEquipment
+{
+    private readonly IEquipment _inner;
+
+    public Enchant(IEquipment inner)
     {
-        ((Weapon)equipment).Enchanted = true;
-        return equipment;
+        _inner = inner;
     }
+
+    public string Name => _inner.Name;
+
+    public int AttackPower() => _inner.AttackPower() + 15;
 }
