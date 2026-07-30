@@ -4,26 +4,41 @@ namespace Level10.Devices;
 public interface IDevice
 {
     string Name { get; }
+    void PowerToggle();
+    bool IsOn { get; }
+    int Volume { get; set; }
 }
 
 public sealed class Television : IDevice
 {
-    public string Name => "TV";
-    public bool Powered { get; private set; }
-    public int Level { get; private set; }
+    private int _volume;
 
-    public void Switch() => Powered = !Powered;
-    public void SetLevel(int level) => Level = Math.Clamp(level, 0, 100);
+    public string Name => "TV";
+    public bool IsOn { get; private set; }
+
+    public int Volume
+    {
+        get => _volume;
+        set => _volume = Math.Clamp(value, 0, 100);
+    }
+
+    public void PowerToggle() => IsOn = !IsOn;
 }
 
 public sealed class Radio : IDevice
 {
-    public string Name => "Radio";
-    public bool Active { get; private set; }
-    public int Loudness { get; private set; }
+    private int _volume;
 
-    public void Toggle() => Active = !Active;
-    public void Tune(int level) => Loudness = Math.Clamp(level, 0, 100);
+    public string Name => "Radio";
+    public bool IsOn { get; private set; }
+
+    public int Volume
+    {
+        get => _volume;
+        set => _volume = Math.Clamp(value, 0, 100);
+    }
+
+    public void PowerToggle() => IsOn = !IsOn;
 }
 
 // -----------------------------------------------------------------------------
@@ -44,49 +59,11 @@ public sealed class RemoteControl
 
     public RemoteControl(IDevice device) => _device = device;
 
-    public void TogglePower()
-    {
-        if (_device is Television tv)
-        {
-            tv.Switch();
-        }
-        else if (_device is Radio radio)
-        {
-            radio.Toggle();
-        }
-        else
-        {
-            throw new NotSupportedException($"Unknown device: {_device.Name}");
-        }
-    }
+    public void TogglePower() => _device.PowerToggle();
 
-    public bool IsOn => _device switch
-    {
-        Television tv => tv.Powered,
-        Radio radio => radio.Active,
-        _ => throw new NotSupportedException($"Unknown device: {_device.Name}"),
-    };
+    public bool IsOn => _device.IsOn;
 
-    public void SetVolume(int level)
-    {
-        if (_device is Television tv)
-        {
-            tv.SetLevel(level);
-        }
-        else if (_device is Radio radio)
-        {
-            radio.Tune(level);
-        }
-        else
-        {
-            throw new NotSupportedException($"Unknown device: {_device.Name}");
-        }
-    }
+    public void SetVolume(int level) => _device.Volume = level;
 
-    public int Volume => _device switch
-    {
-        Television tv => tv.Level,
-        Radio radio => radio.Loudness,
-        _ => throw new NotSupportedException($"Unknown device: {_device.Name}"),
-    };
+    public int Volume => _device.Volume;
 }
