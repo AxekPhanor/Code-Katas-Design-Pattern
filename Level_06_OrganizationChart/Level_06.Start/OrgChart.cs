@@ -11,6 +11,13 @@ namespace Level06.Organization;
 //  Objectif : traiter feuilles et groupes à travers une même abstraction, pour
 //  supprimer ces tests de type et laisser chaque unité se calculer elle-même.
 // -----------------------------------------------------------------------------
+
+public interface IOrgUnit
+{
+    public int HeadCount();
+    public decimal MonthlyCost();
+}
+
 public static class OrgChart
 {
     public static int HeadCount(Team team)
