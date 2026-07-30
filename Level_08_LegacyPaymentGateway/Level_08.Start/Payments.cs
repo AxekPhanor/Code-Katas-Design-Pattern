@@ -53,3 +53,18 @@ public static class PaymentGateway
 {
     public static IPaymentProcessor Create() => new TangledPaymentProcessor();
 }
+
+public class BankAdapter : IPaymentProcessor
+{
+    private readonly LegacyBankApi _legacy;
+
+    public BankAdapter(LegacyBankApi legacy)
+    {
+        _legacy = legacy;
+    }
+    
+    public PaymentReceipt Pay(decimal amount, string currency)
+    {
+        return _legacy.Charge((long)amount, currency);
+    }
+}

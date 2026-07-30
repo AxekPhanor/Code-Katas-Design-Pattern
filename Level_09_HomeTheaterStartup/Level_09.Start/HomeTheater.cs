@@ -13,16 +13,38 @@ namespace Level09.HomeTheater;
 // -----------------------------------------------------------------------------
 public static class HomeTheater
 {
-    public static IReadOnlyList<string> StartMovie()
+    public static IReadOnlyList<string> StartMovie() => new FacadeHomeTheater().Watch();
+}
+
+public class HomeTheaterFacade
+{
+    private readonly PopcornMaker _popcorn;
+    private readonly Lights _lights;
+    private readonly Screen _screen;
+    private readonly Projector _projector;
+    private readonly Amplifier _amplifier;
+    private readonly DvdPlayer _dvd;
+
+    public HomeTheaterFacade()
+    {
+        _popcorn   = new PopcornMaker();
+        _lights    = new Lights();
+        _screen    = new Screen();
+        _projector = new Projector();
+        _amplifier = new Amplifier();
+        _dvd       = new DvdPlayer();
+    }
+
+    public IReadOnlyList<string> Watch()
     {
         return new List<string>
         {
-            new PopcornMaker().PowerOn(),
-            new Lights().PowerOn(),
-            new Screen().PowerOn(),
-            new Projector().PowerOn(),
-            new Amplifier().PowerOn(),
-            new DvdPlayer().PowerOn(),
+            _popcorn.PowerOn(),
+            _lights.PowerOn(),
+            _screen.PowerOn(),
+            _projector.PowerOn(),
+            _amplifier.PowerOn(),
+            _dvd.PowerOn(),
         };
     }
 }
