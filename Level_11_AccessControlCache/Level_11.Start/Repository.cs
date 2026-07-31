@@ -36,7 +36,33 @@ public sealed class DatabaseUserRepository : IUserRepository
 //  Objectif : intercaler un substitut qui présente le MÊME contrat, mais met en
 //  cache les résultats (et pourrait contrôler les accès) sans changer l'appelant.
 // -----------------------------------------------------------------------------
+/// <summary>
+/// Substitut (Proxy) : présente le même contrat que le sujet réel, mais met en
+/// cache les résultats pour éviter les allers-retours répétés. L'appelant ne
+/// voit aucune différence.
+/// </summary>
+public sealed class CachingUserRepository : IUserRepository
+{
+    private readonly IUserRepository _inner;
+    private readonly Dictionary<int, string> _cache = new();
+
+    public CachingUserRepository(IUserRepository inner) => _inner = inner;
+
+    public string GetUserName(int id)
+    {
+        if (_cache.TryGetValue(id, out var cached))
+        {
+            return cached;
+        }
+
+        var name = _inner.GetUserName(id);
+        _cache[id] = name;
+        return name;
+    }
+}
+
 public static class UserAccess
 {
-    public static IUserRepository Wrap(DatabaseUserRepository database) => database;
+    public static IUserRepository Wrap(DatabaseUserRepository database) =>
+        new CachingUserRepository(database);
 }
